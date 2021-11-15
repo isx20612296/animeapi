@@ -1,17 +1,11 @@
 package com.example.animeapi.domain;
 
-import org.springframework.data.annotation.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
-
-public class Anime {
 
 @Entity
 @Table(name = "anime")
-public class Movie {
+public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID animeid;
@@ -22,4 +16,4 @@ public class Movie {
     public String year;
     public String imageurl;
 }
-}
+
