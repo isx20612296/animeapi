@@ -7,17 +7,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public class AnimeController {
-
 @RestController
 @RequestMapping("/animes")
-public class MovieController {
+public class AnimeController {
 
     @Autowired
     private AnimeRepository animeRepository;
 
     @GetMapping("/")
-    public List<Anime> findAllMovies() {
+    public List<Anime> findAllAnimes() {
         return animeRepository.findAll();
     }
 
@@ -25,5 +23,4 @@ public class MovieController {
     public Anime createAnime(@RequestBody Anime anime) {
         return animeRepository.save(anime);
     }
-}
 }
