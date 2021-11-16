@@ -14,6 +14,6 @@ public class Anime {
     public String description;
     public String type;
     public String year;
-    public String imageurl;
+    public String image;
 }
 
