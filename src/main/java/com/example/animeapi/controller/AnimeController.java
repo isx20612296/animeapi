@@ -2,6 +2,10 @@ package com.example.animeapi.controller;
 
 import com.example.animeapi.domain.Anime;
 import com.example.animeapi.repository.AnimeRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -31,16 +35,27 @@ public class AnimeController {
 
     //TODO(get i delete, treballar amb les ids)
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<byte[]> getFile(@PathVariable UUID id) {
-//        Anime anime = animeRepository.findById(id).orElse(null);
-//
-//        if (anime == null) return ResponseEntity.notFound().build();
-//
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.valueOf(anime.contenttype))
-//                .contentLength(anime.data.length)
-//                .body(anime.data);
-//    }
+    @GetMapping("/{animeid}")
+    public ResponseEntity<ObjectMapper> getAnime(@PathVariable UUID animeid) {
+        Anime anime = animeRepository.findById(animeid).orElse(null);
+
+        if (anime == null) return ResponseEntity.notFound().build();
+
+        Anime animeResp = new Anime();
+        animeResp.name = "A";
+        animeResp.description ="B";
+        animeResp.year = "1";
+        animeResp.type = "C";
+        animeResp.image = "D";
+
+        ObjectMapper resp = new ObjectMapper();
+        try {
+            resp.writeValueAsString(animeResp);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok().body(resp);
+    }
 
 }
