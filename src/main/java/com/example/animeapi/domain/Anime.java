@@ -15,5 +15,16 @@ public class Anime {
     public String type;
     public String year;
     public String image;
+
+    public Anime(String name, String description, String type, String year, String image) {
+        animeid = new UUID(0, 99999999);
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.year = year;
+        this.image = image;
+    }
+
+    public Anime(){};
 }
 
