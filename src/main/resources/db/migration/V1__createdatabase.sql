@@ -25,13 +25,13 @@ INSERT INTO anime(name, description, type, year, image) VALUES
     ('A15','A15desc','A15type','2000','A15image');
 
 
-    CREATE TABLE IF NOT EXISTS users (
-        userid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
-        username text,
-        password text -- TODO(desar contra de forma més segura)
-    );
+CREATE TABLE IF NOT EXISTS users (
+    userid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+    username text,
+    password text -- TODO(desar contra de forma més segura)
+);
 
-    INSERT INTO users (username, password) VALUES
+INSERT INTO users (username, password) VALUES
     ( 'user1' , 'pass' ),
     ( 'user2' , 'pass' ),
     ( 'user3' , 'pass' ),
@@ -49,3 +49,9 @@ INSERT INTO anime(name, description, type, year, image) VALUES
     ( 'user15' , 'pass' ),
     ( 'user16' , 'pass' )
 ;
+
+CREATE TABLE files (
+    fileid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+    contenttype TEXT,
+    data bytea
+);

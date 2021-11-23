@@ -19,20 +19,20 @@ public class AnimeController {
     @Autowired
     private AnimeRepository animeRepository;
 
-    @Autowired
-    private UserRegisterRequest userRegisterRequest;
+//    @Autowired
+//    private UserRegisterRequest userRegisterRequest;
 
     @GetMapping("/")
     public List<Anime> findAllAnimes() {
         return animeRepository.findAll();
     }
 
-//    @PostMapping("/")
-//    public Anime createAnime(@RequestBody AnimeRequest animeRequest) {
-//
-//        Anime anime = new Anime(animeRequest.name, animeRequest.description, animeRequest.type, animeRequest.year, animeRequest.image);
-//        return animeRepository.save(anime);
-//    }
+    @PostMapping("/")
+    public Anime createAnime(@RequestBody AnimeRequest animeRequest) {
+
+        Anime anime = new Anime(animeRequest.name, animeRequest.description, animeRequest.type, animeRequest.year, animeRequest.image);
+        return animeRepository.save(anime);
+    }
 
 //    @PostMapping("/")
 //    public Anime createAnime(@RequestBody UserRegisterRequest userRegisterRequest){

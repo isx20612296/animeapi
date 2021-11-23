@@ -65,13 +65,9 @@ public class UserController {
 
     @DeleteMapping("/")
     public ResponseEntity<? extends Object> deleteAllUsers(){
-
         userRepository.deleteAll();
-
         return ResponseEntity.status(HttpStatus.OK).body("Tots els usuaris han sigut eliminats");
-
     }
-
 }
 
 class UserResultat{
