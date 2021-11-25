@@ -4,6 +4,7 @@ import com.example.animeapi.domain.Anime;
 import com.example.animeapi.domain.User;
 import com.example.animeapi.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,9 +46,13 @@ public class UserController {
         return new ResponseEntity<UserResultat>(new UserResultat(user.userid, user.username), HttpStatus.OK);
     }
     @PostMapping("/")
-    public User createUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<?> createUser(@RequestBody UserRequest userRequest) {
 
-        return userRepository.save(new User(userRequest.username, userRequest.password));
+        User userfind = userRepository.findByUsername(userRequest.username);
+
+        if (userfind != null) return ResponseEntity.status(HttpStatus.CONFLICT).body("Ja existeix un usuari amb el nom '"+ userRequest.username +"'");
+
+        return ResponseEntity.ok().body(userRepository.save(new User(userRequest.username, userRequest.password)));
     }
 
     @DeleteMapping("/{id}")

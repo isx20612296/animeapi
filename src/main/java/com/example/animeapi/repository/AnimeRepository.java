@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface AnimeRepository extends JpaRepository<Anime, UUID>{
     @Query("select name from Anime")
     List<String> getAnimes();
+
+    Anime findByName(String name);
 }
