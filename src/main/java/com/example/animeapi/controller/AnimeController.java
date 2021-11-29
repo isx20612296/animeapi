@@ -1,9 +1,11 @@
 package com.example.animeapi.controller;
 
 import com.example.animeapi.domain.Anime;
-import com.example.animeapi.domain.dto.UserRegisterRequest;
+import com.example.animeapi.domain.dto.ListResponseAll;
+import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.repository.AnimeRepository;
 import com.example.animeapi.repository.UserRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,8 @@ public class AnimeController {
 //    private UserRegisterRequest userRegisterRequest;
 
     @GetMapping("/")
-    public List<Anime> findAllAnimes() {
-        return animeRepository.findAll();
+    public ResponseEntity<?> findAllAnimes() {
+        return ResponseEntity.ok().body(ListResponseAll.getResult(animeRepository.findAll()));
     }
 
     @PostMapping("/")
@@ -32,7 +34,7 @@ public class AnimeController {
 
         Anime anime = new Anime(animeRequest.name, animeRequest.description, animeRequest.type, animeRequest.year, animeRequest.image);
         Anime animeFind = animeRepository.findByName(animeRequest.name);
-        if (animeFind != null) return ResponseEntity.status(HttpStatus.CONFLICT).body("Ja existeix un anime amb el nom '" + animeRequest.name +"'");
+        if (animeFind != null) return ResponseEntity.status(HttpStatus.CONFLICT).body(MessageResponse.getMessage("Ja existeix un anime amb el nom '" + animeRequest.name +"'"));
         return ResponseEntity.status(HttpStatus.OK).body(animeRepository.save(anime));
     }
 
@@ -46,7 +48,7 @@ public class AnimeController {
     public ResponseEntity<? extends Object> getAnime(@PathVariable UUID id) {
         Anime anime = animeRepository.findById(id).orElse(null);
 
-        if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No s'ha trobat l'anime amb id '" + id + "'");
+        if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(MessageResponse.getMessage("No s'ha trobat l'anime amb id '" + id + "'"));
 
         return new ResponseEntity<Anime>(anime, HttpStatus.OK);
     }
@@ -56,11 +58,11 @@ public class AnimeController {
 
         Anime anime = animeRepository.findById(id).orElse(null);
 
-        if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No s'ha trobat l'anime amb id '" + id + "'");
+        if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(MessageResponse.getMessage("No s'ha trobat l'anime amb id '" + id + "'"));
 
         animeRepository.delete(anime);
 
-        return ResponseEntity.status(HttpStatus.OK).body("S'ha eliminat l'anime amd id '" + id + "'");
+        return ResponseEntity.status(HttpStatus.OK).body(MessageResponse.getMessage("S'ha eliminat l'anime amd id '" + id + "'"));
 
     }
 

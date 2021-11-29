@@ -7,6 +7,12 @@ CREATE TABLE IF NOT EXISTS anime (
     image text
 );
 
+--CREATE TABLE IF NOT EXISTS authors (
+--    authorid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+--    name text,
+--    image text
+--);
+
 INSERT INTO anime(name, description, type, year, image) VALUES
     ('Shingeki No Kyoigin', 'Enano titan', 'tv', 2009, 'fotodeltitanmartillo'),
     ('A2','A2desc','A2type','2000','A2image'),
