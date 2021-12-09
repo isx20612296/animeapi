@@ -1,4 +1,4 @@
-package com.example.animeapi.domain;
+package com.example.animeapi.domain.model;
 
 import javax.persistence.*;
 import java.util.UUID;

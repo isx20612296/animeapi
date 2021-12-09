@@ -1,13 +1,10 @@
 package com.example.animeapi.controller;
 
-import com.example.animeapi.domain.Anime;
-import com.example.animeapi.domain.User;
+import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.coyote.Response;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

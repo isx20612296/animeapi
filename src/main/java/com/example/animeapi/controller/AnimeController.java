@@ -1,17 +1,14 @@
 package com.example.animeapi.controller;
 
-import com.example.animeapi.domain.Anime;
+import com.example.animeapi.domain.model.Anime;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.repository.AnimeRepository;
-import com.example.animeapi.repository.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -45,7 +42,7 @@ public class AnimeController {
 //    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<? extends Object> getAnime(@PathVariable UUID id) {
+    public ResponseEntity<?> getAnime(@PathVariable UUID id) {
         Anime anime = animeRepository.findById(id).orElse(null);
 
         if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(MessageResponse.getMessage("No s'ha trobat l'anime amb id '" + id + "'"));
@@ -54,7 +51,7 @@ public class AnimeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<? extends Object> deleteAnime(@PathVariable UUID id){
+    public ResponseEntity<?> deleteAnime(@PathVariable UUID id){
 
         Anime anime = animeRepository.findById(id).orElse(null);
 

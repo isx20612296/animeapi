@@ -1,6 +1,7 @@
-package com.example.animeapi.domain;
+package com.example.animeapi.domain.model;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +16,14 @@ public class Anime {
     public String type;
     public String year;
     public String image;
+
+    @ManyToMany
+    @JoinTable(name = "authors_anime", joinColumns = @JoinColumn(name = "animeid"), inverseJoinColumns = @JoinColumn(name = "authorid"))
+    public Set<Author> authors;
+
+    @ManyToMany
+    @JoinTable(name = "genres_anime", joinColumns = @JoinColumn(name = "animeid"), inverseJoinColumns = @JoinColumn(name = "genreid"))
+    public Set<Genre> genres;
 
     public Anime(String name, String description, String type, String year, String image) {
         animeid = new UUID(0, 99999999);

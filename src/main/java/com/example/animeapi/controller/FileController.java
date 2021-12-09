@@ -1,7 +1,6 @@
 package com.example.animeapi.controller;
 
-import com.example.animeapi.domain.File;
-import com.example.animeapi.domain.User;
+import com.example.animeapi.domain.model.File;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.repository.FileRepository;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
