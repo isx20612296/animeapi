@@ -1,5 +1,7 @@
 package com.example.animeapi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -16,6 +18,7 @@ public class Author {
     public String image;
 
     @ManyToMany(mappedBy = "authors")
+    @JsonIgnoreProperties("authors")
     public Set<Anime> animes;
 
 }

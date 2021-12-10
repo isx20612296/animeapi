@@ -11,18 +11,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/AnimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/AnimeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/Anime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Anime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/dto/ListResponseAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/dto/ListResponseAll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/AnimeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/AnimeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/FileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/FileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__createdatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__createdatabase.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Anime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Anime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Author.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
