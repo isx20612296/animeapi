@@ -1,6 +1,7 @@
 package com.example.animeapi.domain.model;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +19,9 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    @ManyToMany(mappedBy = "favorited")
+    public Set<Anime> favorites;
 
     public User(){}
 }

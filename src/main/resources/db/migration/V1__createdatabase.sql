@@ -170,3 +170,12 @@ INSERT INTO genres_anime VALUES
     ((SELECT animeid FROM anime WHERE name='A14'),(SELECT genreid FROM genres WHERE label='Genere 2')),
     ((SELECT animeid FROM anime WHERE name='A15'),(SELECT genreid FROM genres WHERE label='Genere 5')),
     ((SELECT animeid FROM anime WHERE name='A15'),(SELECT genreid FROM genres WHERE label='Genere 3'));
+
+CREATE TABLE IF NOT EXISTS favorite (
+    userid UUID NOT NULL DEFAULT gen_random_uuid(),
+    animeid UUID NOT NULL DEFAULT gen_random_uuid(),
+    PRIMARY KEY(userid, animeid)
+);
+
+INSERT INTO favorite VALUES
+((SELECT userid FROM users WHERE username='user1'),(SELECT animeid FROM anime WHERE name='A3'));

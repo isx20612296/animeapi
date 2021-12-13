@@ -11,8 +11,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/AnimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/AnimeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Anime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Anime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/Author.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/animeapi/domain/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__createdatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__createdatabase.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +61,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

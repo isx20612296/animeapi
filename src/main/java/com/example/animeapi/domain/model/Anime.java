@@ -29,6 +29,11 @@ public class Anime {
     @JsonIgnoreProperties("genres")
     public Set<Genre> genres;
 
+    @ManyToMany
+    @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "animeid"), inverseJoinColumns = @JoinColumn(name = "userid"))
+    @JsonIgnoreProperties("users")
+    public Set<User> favorited;
+
     public Anime(String name, String description, String type, String year, String image) {
         animeid = new UUID(0, 99999999);
         this.name = name;

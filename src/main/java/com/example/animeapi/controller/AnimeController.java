@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,7 +25,11 @@ public class AnimeController {
 
     @GetMapping("/")
     public ResponseEntity<?> findAllAnimes() {
-        return ResponseEntity.ok().body(ListResponseAll.getResult(animeRepository.findAll()));
+        List<AnimeRequest> llistaAnimeResposta = new ArrayList<>();
+        for (Anime a : animeRepository.findAll()){
+            llistaAnimeResposta.add(new AnimeRequest(a.name, a.description, a.type, a.year, a.image));
+        }
+        return ResponseEntity.ok().body(ListResponseAll.getResult(llistaAnimeResposta));
     }
 
     @PostMapping("/")
@@ -72,4 +78,11 @@ class AnimeRequest {
     public String year;
     public String image;
 
+    public AnimeRequest(String name, String description, String type, String year, String image) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.year = year;
+        this.image = image;
+    }
 }
