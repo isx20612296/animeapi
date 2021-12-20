@@ -1,6 +1,7 @@
 package com.example.animeapi.domain.model;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -12,6 +13,9 @@ public class Genre {
     public UUID genreid;
 
     public String label;
+
+    @ManyToMany(mappedBy = "genres")
+    Set<Anime> animes;
 
 
 }

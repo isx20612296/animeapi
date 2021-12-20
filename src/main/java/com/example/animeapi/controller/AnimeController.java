@@ -3,6 +3,7 @@ package com.example.animeapi.controller;
 import com.example.animeapi.domain.model.Anime;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
+import com.example.animeapi.domain.model.projection.ProjectionAnime;
 import com.example.animeapi.repository.AnimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,7 @@ public class AnimeController {
 
     @GetMapping("/")
     public ResponseEntity<?> findAllAnimes() {
-        List<AnimeRequest> llistaAnimeResposta = new ArrayList<>();
-        for (Anime a : animeRepository.findAll()){
-            llistaAnimeResposta.add(new AnimeRequest(a.name, a.description, a.type, a.year, a.image));
-        }
+        List<ProjectionAnime> llistaAnimeResposta = animeRepository.findBy();
         return ResponseEntity.ok().body(ListResponseAll.getResult(llistaAnimeResposta));
     }
 
@@ -49,11 +47,11 @@ public class AnimeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getAnime(@PathVariable UUID id) {
-        Anime anime = animeRepository.findById(id).orElse(null);
+        ProjectionAnime anime = animeRepository.findByAnimeid(id, ProjectionAnime.class);
 
         if (anime == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(MessageResponse.getMessage("No s'ha trobat l'anime amb id '" + id + "'"));
 
-        return new ResponseEntity<Anime>(anime, HttpStatus.OK);
+        return new ResponseEntity<ProjectionAnime>(anime, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
