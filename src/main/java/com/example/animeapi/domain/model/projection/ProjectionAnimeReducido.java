@@ -1,5 +1,6 @@
 package com.example.animeapi.domain.model.projection;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Set;
@@ -14,5 +15,6 @@ public interface ProjectionAnimeReducido {
     String getYear();
     String getImage();
 
+    @JsonIgnoreProperties("animes")
     Set<ProjectionGenre> getGenres();
 }

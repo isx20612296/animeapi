@@ -13,7 +13,7 @@ public interface ProjectionAuthor {
     String getName();
     String getImage();
 
-    @JsonIgnoreProperties("authors")
+    @JsonIgnoreProperties({"authors","genres"})
     Set<ProjectionAnimeSimple> getAnimes();
 
 }

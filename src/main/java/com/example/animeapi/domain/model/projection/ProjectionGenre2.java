@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Set;
 import java.util.UUID;
 
-@JsonPropertyOrder({"genreid", "label"})
+@JsonPropertyOrder({"genreid", "label", "image"})
 public interface ProjectionGenre2 {
     UUID getGenreid();
     String getLabel();
