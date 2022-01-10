@@ -5,9 +5,9 @@ import com.example.animeapi.domain.model.Favorites;
 import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
+import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
 import com.example.animeapi.repository.FavoriteRepository;
 import com.example.animeapi.repository.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +41,11 @@ public class UserController {
         return ResponseEntity.ok().body(ListResponseAll.getResult(llistaResposta));
     }
 
+    @GetMapping("/{id}/favorites")
+    public ResponseEntity<?> getUserFavorite (@PathVariable UUID id) {
+        ProjectionAnimeSimple favs = favoriteRepository.findByUserid(id, ProjectionAnimeSimple.class);
+        return new ResponseEntity<ProjectionAnimeSimple>(favs, HttpStatus.OK);
+    }
 
     @PostMapping("/{id}/favorites")
     public ResponseEntity<?> postUserFavorite (@RequestBody Favorites favorites) {
