@@ -24,4 +24,8 @@ public class User {
     public Set<Anime> favorites;
 
     public User(){}
+
+    public UUID getUserId(){
+        return userid;
+    }
 }

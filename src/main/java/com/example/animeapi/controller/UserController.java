@@ -8,6 +8,7 @@ import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
+import com.example.animeapi.domain.model.projection.UserResponse;
 import com.example.animeapi.repository.FavoriteRepository;
 import com.example.animeapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,25 +49,30 @@ public class UserController {
         return ResponseEntity.ok().body(ListResponseAll.getResult(llistaResposta));
     }
 
-    @GetMapping("/{id}/favorites")
-    public ResponseEntity<?> getUserFavorite (@PathVariable UUID id) {
-        List<ProjectionAnimeSimple> favs = favoriteRepository.findByUserid(id, ProjectionAnimeSimple.class);
-        return ResponseEntity.ok().body(ListResponseAll.getResult(favs));
-    }
-
-
-    @PostMapping("/register")
-    public String register(@RequestBody UserRegisterRequest userRegisterRequest) {
-
-        if (userRepository.findByUsername(userRegisterRequest.username) == null) {
-            User user = new User();
-            user.username = userRegisterRequest.username;
-            user.password = passwordEncoder.encode(userRegisterRequest.password);
-            userRepository.save(user);
-            return "OK";   // TODO
+    @GetMapping("/favorites")
+    public ResponseEntity<?> getUserFavorite (Authentication authentication) {
+        User authenticatedUser;
+        if (authentication != null){
+            authenticatedUser =  userRepository.findByUsername(authentication.getName());
+            if (authenticatedUser != null) {
+                return ResponseEntity.ok().body(userRepository.findByUsername(authentication.getName(), UserResponse.class));
+            }
         }
-        return "ERROR";    // TODO
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("No autorizado"));
     }
+
+    @PostMapping(path = "/register" )
+    public ResponseEntity<?> register(@RequestBody UserRegisterRequest requestUserRegister) {
+
+        if (userRepository.findByUsername(requestUserRegister.username) == null) {
+            User user = new User();
+            user.username = requestUserRegister.username;
+            user.password = passwordEncoder.encode(requestUserRegister.password);
+            return ResponseEntity.ok().body(userRepository.save(user).userid.toString());
+        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(MessageResponse.getMessage("Nom d'usuari no disponible"));
+    }
+
     @PostMapping("/favorites")
     public ResponseEntity<?> postUserFavorite (@RequestBody FavoriteRequest favoriteRequest, Authentication authentication) {
         Favorite favorite = new Favorite();

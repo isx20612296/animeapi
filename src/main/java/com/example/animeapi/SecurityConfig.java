@@ -23,13 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.POST,"/favorites/").authenticated()
+                .mvcMatchers(HttpMethod.POST,"/users/favorites/").authenticated()
                 .mvcMatchers("/users/register/").permitAll()
                 .anyRequest().permitAll()
                 .and()
@@ -41,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, true as enabled from usser where username = ?")
-                .authoritiesByUsernameQuery("select username, role from usser where username = ?")
+                .usersByUsernameQuery("select username, password from users where username = ?")
+                .authoritiesByUsernameQuery("select username from users where username = ?")
                 .passwordEncoder(getPasswordEncoder());
     }
 }
