@@ -145,9 +145,9 @@ public class UserController {
 class UserResultat{
     public UUID userid;
     public String username;
-    public Set<Anime> favorites;
+    public Set<ProjectionAnimeSimple> favorites;
 
-    public UserResultat(UUID userid, String username, Set<Anime> favorites){
+    public UserResultat(UUID userid, String username, Set<ProjectionAnimeSimple> favorites){
         this.userid = userid;
         this.username = username;
         this.favorites = favorites;

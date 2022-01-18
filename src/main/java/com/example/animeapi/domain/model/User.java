@@ -1,5 +1,7 @@
 package com.example.animeapi.domain.model;
 
+import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
+
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -21,7 +23,7 @@ public class User {
     }
 
     @ManyToMany(mappedBy = "favorited")
-    public Set<Anime> favorites;
+    public Set<ProjectionAnimeSimple> favorites;
 
     public User(){}
 
