@@ -9,6 +9,7 @@ import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
 import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
 import com.example.animeapi.domain.model.projection.UserResponse;
+import com.example.animeapi.repository.AnimeRepository;
 import com.example.animeapi.repository.FavoriteRepository;
 import com.example.animeapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +82,32 @@ public class UserController {
         return ResponseEntity.ok().body(favoriteRepository.save(favorite));
     }
 
-    //@DeleteMapping("/{id}/favorites")
-    //public ResponseEntity<?> deleteUserFavorites (@PathVariable)
+    @DeleteMapping("/favorites/{id}")
+    public ResponseEntity<?> deleteUserFavorites (@PathVariable UUID id, Authentication authentication){
+        AnimeRepository animeRepository = null;
+        boolean found = false;
+
+        if (authentication.getName() == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("No autoritzat"));
+        }
+
+        for (Anime a : animeRepository.findAll()){
+            if (a.animeid == id){
+                found = true;
+            }
+        }
+
+        if (!found){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("Anime no trobat"));
+        }
+
+        User user = userRepository.findByUsername(authentication.getName());
+        Favorite favorite = null;
+        favorite.animeid = id;
+        favorite.userid = user.getUserId();
+        favoriteRepository.delete(favorite);
+        return ResponseEntity.ok().body(MessageResponse.getMessage("Anime eliminat de favorits"));
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> createUser(@RequestBody UserRequest userRequest) {
