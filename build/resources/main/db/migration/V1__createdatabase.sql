@@ -56,26 +56,27 @@ INSERT INTO anime(name, description, type, year, image) VALUES
 CREATE TABLE IF NOT EXISTS users (
     userid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
     username text,
-    password text -- TODO(desar contra de forma més segura)
+    password text
 );
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO users (username, password) VALUES
-    ( 'user1' , 'pass' ),
-    ( 'user2' , 'pass' ),
-    ( 'user3' , 'pass' ),
-    ( 'user4' , 'pass' ),
-    ( 'user5' , 'pass' ),
-    ( 'user6' , 'pass' ),
-    ( 'user7' , 'pass' ),
-    ( 'user8' , 'pass' ),
-    ( 'user9' , 'pass' ),
-    ( 'user10' , 'pass' ),
-    ( 'user11' , 'pass' ),
-    ( 'user12' , 'pass' ),
-    ( 'user13' , 'pass' ),
-    ( 'user14' , 'pass' ),
-    ( 'user15' , 'pass' ),
-    ( 'user16' , 'pass' )
+    ( 'user1' , crypt('pass', gen_salt('bf'))),
+    ( 'user2' , crypt('pass', gen_salt('bf'))),
+    ( 'user3' , crypt('pass', gen_salt('bf'))),
+    ( 'user4' , crypt('pass', gen_salt('bf'))),
+    ( 'user5' , crypt('pass', gen_salt('bf'))),
+    ( 'user6' , crypt('pass', gen_salt('bf'))),
+    ( 'user7' , crypt('pass', gen_salt('bf'))),
+    ( 'user8' , crypt('pass', gen_salt('bf'))),
+    ( 'user9' , crypt('pass', gen_salt('bf'))),
+    ( 'user10' , crypt('pass', gen_salt('bf'))),
+    ( 'user11' , crypt('pass', gen_salt('bf'))),
+    ( 'user12' , crypt('pass', gen_salt('bf'))),
+    ( 'user13' , crypt('pass', gen_salt('bf'))),
+    ( 'user14' , crypt('pass', gen_salt('bf'))),
+    ( 'user15' , crypt('pass', gen_salt('bf'))),
+    ( 'user16' , crypt('pass', gen_salt('bf')))
 ;
 
 CREATE TABLE files (

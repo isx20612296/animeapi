@@ -23,7 +23,7 @@ public class User {
     }
 
     @ManyToMany(mappedBy = "favorited")
-    public Set<ProjectionAnimeSimple> favorites;
+    public Set<Anime> favorites;
 
     public User(){}
 

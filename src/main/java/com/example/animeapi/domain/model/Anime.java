@@ -1,5 +1,6 @@
 package com.example.animeapi.domain.model;
 
+import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -31,7 +32,7 @@ public class Anime {
 
     @ManyToMany
     @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "animeid"), inverseJoinColumns = @JoinColumn(name = "userid"))
-    @JsonIgnoreProperties("users")
+
     public Set<User> favorited;
 
     public Anime(String name, String description, String type, String year, String image) {

@@ -3,8 +3,10 @@ package com.example.animeapi.controller;
 import com.example.animeapi.domain.model.Anime;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
+import com.example.animeapi.domain.model.Favorite;
 import com.example.animeapi.domain.model.projection.ProjectionAnime;
 import com.example.animeapi.repository.AnimeRepository;
+import com.example.animeapi.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class AnimeController {
 //    @Autowired
 //    private UserRegisterRequest userRegisterRequest;
 
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
     @GetMapping("/")
     public ResponseEntity<?> findAllAnimes() {
         List<ProjectionAnime> llistaAnimeResposta = animeRepository.findBy();
@@ -32,7 +37,6 @@ public class AnimeController {
 
     @PostMapping("/")
     public ResponseEntity<?> createAnime(@RequestBody AnimeRequest animeRequest) {
-
         Anime anime = new Anime(animeRequest.name, animeRequest.description, animeRequest.type, animeRequest.year, animeRequest.image);
         Anime animeFind = animeRepository.findByName(animeRequest.name);
         if (animeFind != null) return ResponseEntity.status(HttpStatus.CONFLICT).body(MessageResponse.getMessage("Ja existeix un anime amb el nom '" + animeRequest.name +"'"));
