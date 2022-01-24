@@ -4,6 +4,7 @@ package com.example.animeapi.controller;
 import com.example.animeapi.domain.dto.RequestFavorite;
 import com.example.animeapi.domain.dto.RequestUserRegister;
 //import com.example.animeapi.domain.model.Favorite;
+import com.example.animeapi.domain.model.Anime;
 import com.example.animeapi.domain.model.Favorite;
 import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
@@ -86,32 +87,36 @@ public class UserController {
         return ResponseEntity.ok().body(favoriteRepository.save(favorite));
     }
 
-//    @DeleteMapping("/favorites/{id}")
-//    public ResponseEntity<?> deleteUserFavorites (@PathVariable UUID id, Authentication authentication){
-//        AnimeRepository animeRepository = null;
-//        boolean found = false;
-//
-//        if (authentication.getName() == null){
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("No autoritzat"));
-//        }
-//
-//        for (Anime a : animeRepository.findAll()){
-//            if (a.animeid == id){
-//                found = true;
-//            }
-//        }
-//
-//        if (!found){
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("Anime no trobat"));
-//        }
-//
-//        User user = userRepository.findByUsername(authentication.getName());
-//        Favorite favorite = null;
-//        favorite.animeid = id;
-//        favorite.userid = user.getUserId();
-//        favoriteRepository.delete(favorite);
-//        return ResponseEntity.ok().body(MessageResponse.getMessage("Anime eliminat de favorits"));
-//    }
+    @DeleteMapping("/favorites/{id}")
+    public ResponseEntity<?> deleteUserFavorites (@PathVariable UUID id, Authentication authentication){
+        AnimeRepository animeRepository = null;
+        boolean found = false;
+
+        if (authentication.getName() == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("No autoritzat"));
+        }
+
+        if (animeRepository.findAll().size() == 0){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No s'ha trobat cap anime a la base de dades");
+        }
+
+        for (Anime a : animeRepository.findAll()){
+            if (a.animeid == id){
+                found = true;
+            }
+        }
+
+        if (!found){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("Anime no trobat"));
+        }
+
+        User user = userRepository.findByUsername(authentication.getName());
+        Favorite favorite = null;
+        favorite.animeid = id;
+        favorite.userid = user.getUserId();
+        favoriteRepository.delete(favorite);
+        return ResponseEntity.ok().body(MessageResponse.getMessage("Anime eliminat de favorits"));
+    }
 
     @PostMapping("/")
     public ResponseEntity<?> createUser(@RequestBody RequestUser userRequest) {
