@@ -10,5 +10,5 @@ import java.util.UUID;
 public interface ProjectionUser {
     UUID getUserid();
     String getUsername();
-    Set<ProjectionAnime> getFavorites();
+    Set<ProjectionAnimeSimple> getFavorites();
 }

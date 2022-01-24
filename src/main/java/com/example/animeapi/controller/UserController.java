@@ -1,8 +1,10 @@
 package com.example.animeapi.controller;
 
 //import com.example.animeapi.domain.dto.FavoriteRequest;
+import com.example.animeapi.domain.dto.RequestFavorite;
 import com.example.animeapi.domain.dto.RequestUserRegister;
 //import com.example.animeapi.domain.model.Favorite;
+import com.example.animeapi.domain.model.Favorite;
 import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
@@ -76,14 +78,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(MessageResponse.getMessage("Nom d'usuari no disponible"));
     }
 
-//    @PostMapping("/favorites")
-//    public ResponseEntity<?> postUserFavorite (@RequestBody FavoriteRequest favoriteRequest, Authentication authentication) {
-//        Favorite favorite = new Favorite();
-//        favorite.animeid = favoriteRequest.animeid;
-//        favorite.userid = userRepository.findByUsername(authentication.getName()).userid;
-//        return ResponseEntity.ok().body(favoriteRepository.save(favorite));
-//    }
-//
+    @PostMapping("/favorites")
+    public ResponseEntity<?> postUserFavorite (@RequestBody RequestFavorite favoriteRequest, Authentication authentication) {
+        Favorite favorite = new Favorite();
+        favorite.animeid = favoriteRequest.animeid;
+        favorite.userid = userRepository.findByUsername(authentication.getName()).userid;
+        return ResponseEntity.ok().body(favoriteRepository.save(favorite));
+    }
+
 //    @DeleteMapping("/favorites/{id}")
 //    public ResponseEntity<?> deleteUserFavorites (@PathVariable UUID id, Authentication authentication){
 //        AnimeRepository animeRepository = null;
