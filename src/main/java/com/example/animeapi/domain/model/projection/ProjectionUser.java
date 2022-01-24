@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @JsonPropertyOrder({"userid","username","favorited"})
-public interface UserResponse {
+public interface ProjectionUser {
     UUID getUserid();
     String getUsername();
-    Set<Anime> getFavorited();
+    Set<ProjectionAnime> getFavorites();
 }

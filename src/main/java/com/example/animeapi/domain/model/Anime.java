@@ -32,7 +32,6 @@ public class Anime {
 
     @ManyToMany
     @JoinTable(name = "favorite", joinColumns = @JoinColumn(name = "animeid"), inverseJoinColumns = @JoinColumn(name = "userid"))
-
     public Set<User> favorited;
 
     public Anime(String name, String description, String type, String year, String image) {

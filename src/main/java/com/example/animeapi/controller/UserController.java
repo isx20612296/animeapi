@@ -1,14 +1,12 @@
 package com.example.animeapi.controller;
 
 //import com.example.animeapi.domain.dto.FavoriteRequest;
-import com.example.animeapi.domain.dto.UserRegisterRequest;
-import com.example.animeapi.domain.model.Anime;
+import com.example.animeapi.domain.dto.RequestUserRegister;
 //import com.example.animeapi.domain.model.Favorite;
 import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.dto.ListResponseAll;
 import com.example.animeapi.domain.dto.MessageResponse;
-import com.example.animeapi.domain.model.projection.ProjectionAnimeSimple;
-import com.example.animeapi.domain.model.projection.UserResponse;
+import com.example.animeapi.domain.model.projection.ProjectionUser;
 import com.example.animeapi.repository.AnimeRepository;
 //import com.example.animeapi.repository.FavoriteRepository;
 import com.example.animeapi.repository.FavoriteRepository;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -38,6 +35,9 @@ public class UserController {
     @Autowired
     private FavoriteRepository favoriteRepository;
 
+    @Autowired
+    private AnimeRepository animeRepository;
+
     @GetMapping("/")
     public ResponseEntity<?> findAllUsers(){
 
@@ -52,20 +52,20 @@ public class UserController {
         return ResponseEntity.ok().body(ListResponseAll.getResult(llistaResposta));
     }
 
-    @GetMapping("/favorites")
+    @GetMapping("/favorites/")
     public ResponseEntity<?> getUserFavorite (Authentication authentication) {
-        User authenticatedUser;
+
         if (authentication != null){
-            authenticatedUser =  userRepository.findByUsername(authentication.getName());
+            User authenticatedUser =  userRepository.findByUsername(authentication.getName());
             if (authenticatedUser != null) {
-                return ResponseEntity.ok().body(userRepository.findByUsername(authentication.getName(), UserResponse.class));
+                return ResponseEntity.ok().body(userRepository.findByUsername(authentication.getName(), ProjectionUser.class));
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("No autorizado"));
     }
 
     @PostMapping(path = "/register" )
-    public ResponseEntity<?> register(@RequestBody UserRegisterRequest requestUserRegister) {
+    public ResponseEntity<?> register(@RequestBody RequestUserRegister requestUserRegister) {
 
         if (userRepository.findByUsername(requestUserRegister.username) == null) {
             User user = new User();

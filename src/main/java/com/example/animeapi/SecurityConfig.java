@@ -30,16 +30,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers("/users/").permitAll()
-                .mvcMatchers("/users/{id}").permitAll()
-                .mvcMatchers("/users/favorites").authenticated()
-                .mvcMatchers("/animes/").permitAll()
-                .mvcMatchers("/animes/{id}").permitAll()
-                .mvcMatchers("/authors/").permitAll()
-                .mvcMatchers("/authors/{id}").permitAll()
-                .mvcMatchers("/genres/").permitAll()
-                .mvcMatchers("/genres/{id}").permitAll()
-                .anyRequest().permitAll()
+                    .mvcMatchers("/users/").permitAll()
+                    .mvcMatchers("/users/{id}").permitAll()
+                    .mvcMatchers("/files/").permitAll()
+                    .mvcMatchers("/files/{id}").permitAll()
+                    .mvcMatchers("/users/favorites/").authenticated()
+                    .mvcMatchers("/animes/").permitAll()
+                    .mvcMatchers("/animes/{id}").permitAll()
+                    .mvcMatchers("/authors/").permitAll()
+                    .mvcMatchers("/authors/{id}").permitAll()
+                    .mvcMatchers("/genres/").permitAll()
+                    .mvcMatchers("/genres/{id}").permitAll()
+                    .anyRequest().permitAll()
                 .and()
                 .httpBasic();
     }
@@ -49,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password from users where username = ?")
-                .authoritiesByUsernameQuery("select username from users where username = ?")
+                .usersByUsernameQuery("select username, password, true as enabled from users where username = ?")
+                .authoritiesByUsernameQuery("select username, 'USER' as role from users where username = ?")
                 .passwordEncoder(getPasswordEncoder());
     }
 }

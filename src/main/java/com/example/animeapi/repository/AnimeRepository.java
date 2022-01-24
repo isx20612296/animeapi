@@ -1,6 +1,7 @@
 package com.example.animeapi.repository;
 
 import com.example.animeapi.domain.model.Anime;
+import com.example.animeapi.domain.model.User;
 import com.example.animeapi.domain.model.projection.ProjectionAnime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

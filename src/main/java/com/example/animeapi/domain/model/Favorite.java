@@ -13,4 +13,15 @@ public class Favorite {
     public UUID userid;
 
     public UUID animeid;
+
+    public UUID getUserid(){
+        return userid;
+    }
+
+    public UUID getAnimeid(){
+        return animeid;
+    }
 }
+
+
+
