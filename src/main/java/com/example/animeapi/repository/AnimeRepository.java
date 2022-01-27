@@ -19,4 +19,6 @@ public interface AnimeRepository extends JpaRepository<Anime, UUID>{
     List<ProjectionAnime> findBy();
 
     <T> T findByAnimeid(UUID id, Class<T> type);
+
+    Anime findByAnimeid(UUID id);
 }
