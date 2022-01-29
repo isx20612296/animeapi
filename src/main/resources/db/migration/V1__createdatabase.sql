@@ -209,3 +209,27 @@ INSERT INTO favorite VALUES
 ((SELECT userid FROM users WHERE username='user14'),(SELECT animeid FROM anime WHERE name='A13')),
 ((SELECT userid FROM users WHERE username='user15'),(SELECT animeid FROM anime WHERE name='A5')),
 ((SELECT userid FROM users WHERE username='user15'),(SELECT animeid FROM anime WHERE name='A15'));
+
+CREATE TABLE IF NOT EXISTS comment (
+    commentid UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+    userid UUID,
+    animeid UUID,
+    message text
+);
+
+INSERT INTO comment (userid, animeid, message) VALUES
+((SELECT userid FROM users WHERE username='user1'),(SELECT animeid FROM anime WHERE name='Shingeki No Kyoigin'),'This anime is so cool I recommend it'),
+((SELECT userid FROM users WHERE username='user2'),(SELECT animeid FROM anime WHERE name='A2'),'It had some moments of fun but I''m not feeling satisfied'),
+((SELECT userid FROM users WHERE username='user3'),(SELECT animeid FROM anime WHERE name='A3'),'Buen anime recomiendo 10/10'),
+((SELECT userid FROM users WHERE username='user4'),(SELECT animeid FROM anime WHERE name='A4'),'This anime is so cool I recommend it'),
+((SELECT userid FROM users WHERE username='user5'),(SELECT animeid FROM anime WHERE name='A5'),'It had some moments of fun but I''m not feeling satisfied'),
+((SELECT userid FROM users WHERE username='user6'),(SELECT animeid FROM anime WHERE name='A6'),'Buen anime recomiendo 10/10'),
+((SELECT userid FROM users WHERE username='user7'),(SELECT animeid FROM anime WHERE name='A7'),'This anime is so cool I recommend it'),
+((SELECT userid FROM users WHERE username='user8'),(SELECT animeid FROM anime WHERE name='A8'),'It had some moments of fun but I''m not feeling satisfied'),
+((SELECT userid FROM users WHERE username='user9'),(SELECT animeid FROM anime WHERE name='A9'),'Buen anime recomiendo 10/10'),
+((SELECT userid FROM users WHERE username='user10'),(SELECT animeid FROM anime WHERE name='A10'),'This anime is so cool I recommend it'),
+((SELECT userid FROM users WHERE username='user11'),(SELECT animeid FROM anime WHERE name='A11'),'It had some moments of fun but I''m not feeling satisfied'),
+((SELECT userid FROM users WHERE username='user12'),(SELECT animeid FROM anime WHERE name='A12'),'Buen anime recomiendo 10/10'),
+((SELECT userid FROM users WHERE username='user13'),(SELECT animeid FROM anime WHERE name='A13'),'This anime is so cool I recommend it'),
+((SELECT userid FROM users WHERE username='user14'),(SELECT animeid FROM anime WHERE name='A14'),'It had some moments of fun but I''m not feeling satisfied'),
+((SELECT userid FROM users WHERE username='user15'),(SELECT animeid FROM anime WHERE name='A15'),'Buen anime recomiendo 10/10');
