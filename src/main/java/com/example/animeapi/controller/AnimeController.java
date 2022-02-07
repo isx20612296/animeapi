@@ -132,6 +132,11 @@ public class AnimeController {
         if (commentRepository.getByCommentid(idComment) == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(MessageResponse.getMessage("ERROR : Comentari no trobat"));
         }
+
+        if (commentRepository.getByCommentid(idComment).userid != userRepository.findByUsername(authentication.getName()).getUserId()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(MessageResponse.getMessage("ERROR : El comentari no pertany al usuari " + authentication.getName()));
+        }
+
         commentRepository.deleteById(idComment);
         return ResponseEntity.status(HttpStatus.OK).body("comentari eliminat correctament");
     }
